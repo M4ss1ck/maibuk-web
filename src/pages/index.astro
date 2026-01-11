@@ -1,16 +1,342 @@
 ---
-
+import Layout from "../layouts/Layout.astro";
+import "../styles/global.css";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout title="Maibuk — A Distraction-Free Writing App for Authors">
+  <!-- Navigation -->
+  <nav
+    class="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border"
+  >
+    <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+      <a href="/" class="flex items-end gap-2 font-semibold text-lg">
+        <img src="/icon.png" alt="Maibuk Logo" class="w-16 h-16" />
+        <span class="text-3xl mb-1">Maibuk</span>
+      </a>
+      <div class="flex items-center gap-4">
+        <a
+          href="#features"
+          class="text-sm text-muted-foreground hover:text-foreground transition-colors hidden sm:block"
+          >Features</a
+        >
+        <a
+          href="https://github.com/M4ss1ck/maibuk"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg bg-primary text-white hover:bg-primary-hover transition-colors"
+        >
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+            <path
+              d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"
+            ></path>
+          </svg>
+          <span class="hidden sm:inline">GitHub</span>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section
+    class="min-h-screen flex items-center justify-center pt-16 px-6 relative overflow-hidden"
+  >
+    <!-- Subtle gradient background -->
+    <div
+      class="absolute inset-0 bg-gradient-to-b from-primary/5 via-transparent to-transparent pointer-events-none"
+    >
+    </div>
+    <div
+      class="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-primary/5 rounded-full blur-3xl pointer-events-none"
+    >
+    </div>
+
+    <div class="max-w-4xl mx-auto text-center relative z-10">
+      <div
+        class="inline-flex items-center gap-2 px-3 py-1 mb-6 text-xs font-medium rounded-full bg-primary/10 text-primary border border-primary/20"
+      >
+        <span class="w-1.5 h-1.5 rounded-full bg-success animate-pulse"></span>
+        v0.1.13 — Now with EPUB & PDF Export
+      </div>
+
+      <h1
+        class="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight mb-6 leading-tight"
+      >
+        Write.<br />
+        <span class="text-primary">Build.</span><br />
+        Publish.
+      </h1>
+
+      <p
+        class="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto mb-10 leading-relaxed"
+      >
+        A distraction-free, cross-platform writing app for authors. Organize
+        your books, design covers, and export to EPUB & PDF — all in one elegant
+        tool.
+      </p>
+
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a
+          href="https://github.com/M4ss1ck/maibuk/releases"
+          class="inline-flex items-center gap-2 px-6 py-3 text-base font-medium rounded-lg bg-primary text-white hover:bg-primary-hover transition-colors shadow-lg shadow-primary/25"
+        >
+          <svg
+            class="w-5 h-5"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
+            ></path>
+          </svg>
+          Download for Free
+        </a>
+        <a
+          href="https://github.com/M4ss1ck/maibuk/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 px-6 py-3 text-base font-medium rounded-lg bg-card text-foreground border border-border hover:bg-muted/20 transition-colors"
+        >
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+            <path
+              d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"
+            ></path>
+          </svg>
+          View on GitHub
+        </a>
+      </div>
+
+      <p class="mt-6 text-sm text-muted-foreground">
+        Available for Linux, Windows and Android
+      </p>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section id="features" class="py-24 px-6 relative">
+    <div class="absolute inset-0 bg-muted/5 pointer-events-none"></div>
+
+    <div class="max-w-6xl mx-auto relative z-10">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl sm:text-4xl font-bold mb-4">
+          Everything you need to write
+        </h2>
+        <p class="text-lg text-muted-foreground max-w-2xl mx-auto">
+          Built for authors who want to focus on their craft, not their tools.
+        </p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Feature 1: Rich Text Editor -->
+        <div
+          class="p-6 rounded-xl bg-card border border-border hover:border-primary/30 transition-colors group"
+        >
+          <div
+            class="w-12 h-12 rounded-lg bg-primary/10 text-primary flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors"
+          >
+            <svg
+              class="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
+              ></path>
+            </svg>
+          </div>
+          <h3 class="text-lg font-semibold mb-2">Rich Text Editor</h3>
+          <p class="text-muted-foreground text-sm leading-relaxed">
+            A powerful TipTap-based editor with full formatting, tables, images,
+            and distraction-free focus mode.
+          </p>
+        </div>
+
+        <!-- Feature 2: Book Organization -->
+        <div
+          class="p-6 rounded-xl bg-card border border-border hover:border-primary/30 transition-colors group"
+        >
+          <div
+            class="w-12 h-12 rounded-lg bg-primary/10 text-primary flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors"
+          >
+            <svg
+              class="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
+              ></path>
+            </svg>
+          </div>
+          <h3 class="text-lg font-semibold mb-2">Book & Chapter Management</h3>
+          <p class="text-muted-foreground text-sm leading-relaxed">
+            Organize your manuscripts into books and chapters. Drag, drop, and
+            rearrange with ease.
+          </p>
+        </div>
+
+        <!-- Feature 3: Cover Designer -->
+        <div
+          class="p-6 rounded-xl bg-card border border-border hover:border-primary/30 transition-colors group"
+        >
+          <div
+            class="w-12 h-12 rounded-lg bg-primary/10 text-primary flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors"
+          >
+            <svg
+              class="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+              ></path>
+            </svg>
+          </div>
+          <h3 class="text-lg font-semibold mb-2">Integrated Cover Designer</h3>
+          <p class="text-muted-foreground text-sm leading-relaxed">
+            Create stunning book covers with the built-in Fabric.js canvas
+            editor. No external tools needed.
+          </p>
+        </div>
+
+        <!-- Feature 4: Export -->
+        <div
+          class="p-6 rounded-xl bg-card border border-border hover:border-primary/30 transition-colors group"
+        >
+          <div
+            class="w-12 h-12 rounded-lg bg-primary/10 text-primary flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors"
+          >
+            <svg
+              class="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+              ></path>
+            </svg>
+          </div>
+          <h3 class="text-lg font-semibold mb-2">EPUB & PDF Export</h3>
+          <p class="text-muted-foreground text-sm leading-relaxed">
+            Publish-ready exports in EPUB and PDF formats. Your manuscript, your
+            format, your choice.
+          </p>
+        </div>
+
+        <!-- Feature 5: Auto-save -->
+        <div
+          class="p-6 rounded-xl bg-card border border-border hover:border-primary/30 transition-colors group"
+        >
+          <div
+            class="w-12 h-12 rounded-lg bg-primary/10 text-primary flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors"
+          >
+            <svg
+              class="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"
+              ></path>
+            </svg>
+          </div>
+          <h3 class="text-lg font-semibold mb-2">Automatic Saving</h3>
+          <p class="text-muted-foreground text-sm leading-relaxed">
+            Your work is saved automatically to a local SQLite database. Never
+            lose a word again.
+          </p>
+        </div>
+
+        <!-- Feature 6: Cross-platform -->
+        <div
+          class="p-6 rounded-xl bg-card border border-border hover:border-primary/30 transition-colors group"
+        >
+          <div
+            class="w-12 h-12 rounded-lg bg-primary/10 text-primary flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors"
+          >
+            <svg
+              class="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+              ></path>
+            </svg>
+          </div>
+          <h3 class="text-lg font-semibold mb-2">Cross-Platform</h3>
+          <p class="text-muted-foreground text-sm leading-relaxed">
+            Built with Tauri for native performance on Linux, Windows and
+            Android.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-12 px-6 border-t border-border">
+    <div
+      class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-6"
+    >
+      <div class="flex items-center gap-2 text-muted-foreground">
+        <img src="/icon.png" alt="Maibuk Logo" class="w-8 h-8 mb-1" />
+        <span class="text-sm">© 2026 Maibuk. MIT License.</span>
+      </div>
+
+      <div class="flex items-center gap-6">
+        <a
+          href="https://github.com/M4ss1ck"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-muted-foreground hover:text-foreground transition-colors"
+        >
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+            <path
+              d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"
+            ></path>
+          </svg>
+        </a>
+        <a
+          href="https://twitter.com/m4ss1ck"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-muted-foreground hover:text-foreground transition-colors"
+        >
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+            <path
+              d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
+            ></path>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </footer>
+</Layout>
