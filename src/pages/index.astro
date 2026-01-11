@@ -2,7 +2,6 @@
 import Layout from "../layouts/Layout.astro";
 import "../styles/global.css";
 
-// Fetch latest tag from GitHub
 const GITHUB_REPO = "M4ss1ck/maibuk";
 let version = "v0.1.14";
 try {
@@ -17,6 +16,69 @@ try {
 
 const year = new Date().getFullYear();
 ---
+
+<style>
+  .fade-in {
+    opacity: 0;
+    transform: translateY(24px) scale(0.98);
+    transition: opacity 0.7s cubic-bezier(.4,0,.2,1), transform 0.7s cubic-bezier(.4,0,.2,1);
+  }
+  .fade-in.visible {
+    opacity: 1;
+    transform: none;
+  }
+  .slide-in-left {
+    opacity: 0;
+    transform: translateX(-32px);
+    transition: opacity 0.7s cubic-bezier(.4,0,.2,1), transform 0.7s cubic-bezier(.4,0,.2,1);
+  }
+  .slide-in-left.visible {
+    opacity: 1;
+    transform: none;
+  }
+  .slide-in-right {
+    opacity: 0;
+    transform: translateX(32px);
+    transition: opacity 0.7s cubic-bezier(.4,0,.2,1), transform 0.7s cubic-bezier(.4,0,.2,1);
+  }
+  .slide-in-right.visible {
+    opacity: 1;
+    transform: none;
+  }
+  .scale-in {
+    opacity: 0;
+    transform: scale(0.95);
+    transition: opacity 0.7s cubic-bezier(.4,0,.2,1), transform 0.7s cubic-bezier(.4,0,.2,1);
+  }
+  .scale-in.visible {
+    opacity: 1;
+    transform: none;
+  }
+</style>
+
+<script is:inline>
+  // Intersection Observer for reveal animations
+  if (typeof window !== 'undefined') {
+    const reveal = (selector, cls = 'visible') => {
+      const els = document.querySelectorAll(selector);
+      const obs = new window.IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add(cls);
+            obs.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15 });
+      els.forEach(el => obs.observe(el));
+    };
+    window.addEventListener('DOMContentLoaded', () => {
+      reveal('.fade-in');
+      reveal('.slide-in-left');
+      reveal('.slide-in-right');
+      reveal('.scale-in');
+    });
+  }
+</script>
 
 <Layout title="Maibuk — A Distraction-Free Writing App for Authors">
   <!-- Navigation -->
@@ -65,16 +127,16 @@ const year = new Date().getFullYear();
     >
     </div>
 
-    <div class="max-w-4xl mx-auto text-center relative z-10">
+    <div class="max-w-4xl mx-auto text-center relative z-10 fade-in">
       <div
-        class="inline-flex items-center gap-2 px-3 py-1 mb-6 text-xs font-medium rounded-full bg-primary/10 text-primary border border-primary/20"
+        class="inline-flex items-center gap-2 px-3 py-1 mb-6 text-xs font-medium rounded-full bg-primary/10 text-primary border border-primary/20 scale-in"
       >
         <span class="w-1.5 h-1.5 rounded-full bg-success animate-pulse"></span>
         {version} — Now with EPUB & PDF Export
       </div>
 
       <h1
-        class="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight mb-6 leading-tight"
+        class="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight mb-6 leading-tight fade-in"
       >
         Write.<br />
         <span class="text-primary">Build.</span><br />
@@ -82,14 +144,14 @@ const year = new Date().getFullYear();
       </h1>
 
       <p
-        class="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto mb-10 leading-relaxed"
+        class="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto mb-10 leading-relaxed fade-in"
       >
         A distraction-free, cross-platform writing app for authors. Organize
         your books, design covers, and export to EPUB & PDF — all in one elegant
         tool.
       </p>
 
-      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4 fade-in">
         <a
           href="https://github.com/M4ss1ck/maibuk/releases"
           class="inline-flex items-center gap-2 px-6 py-3 text-base font-medium rounded-lg bg-primary text-white hover:bg-primary-hover transition-colors shadow-lg shadow-primary/25"
@@ -124,7 +186,7 @@ const year = new Date().getFullYear();
         </a>
       </div>
 
-      <p class="mt-6 text-sm text-muted-foreground">
+      <p class="mt-6 text-sm text-muted-foreground fade-in">
         Available for Linux, Windows and Android
       </p>
     </div>
@@ -135,7 +197,7 @@ const year = new Date().getFullYear();
     <div class="absolute inset-0 bg-muted/5 pointer-events-none"></div>
 
     <div class="max-w-6xl mx-auto relative z-10">
-      <div class="text-center mb-16">
+      <div class="text-center mb-20 fade-in">
         <h2 class="text-3xl sm:text-4xl font-bold mb-4">
           Everything you need to write
         </h2>
@@ -144,172 +206,170 @@ const year = new Date().getFullYear();
         </p>
       </div>
 
-      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        <!-- Feature 1: Rich Text Editor -->
-        <div
-          class="p-6 rounded-xl bg-card border border-border hover:border-primary/30 transition-colors group"
-        >
-          <div
-            class="w-12 h-12 rounded-lg bg-primary/10 text-primary flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors"
-          >
-            <svg
-              class="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
-              ></path>
+      <!-- Feature 1: Rich Editor - Large Feature -->
+      <div class="mb-20 slide-in-left">
+        <div class="grid lg:grid-cols-2 gap-12 items-center">
+          <div class="order-2 lg:order-1">
+            <div class="inline-flex items-center gap-2 px-3 py-1 mb-4 text-xs font-medium rounded-full bg-primary/10 text-primary border border-primary/20">
+              <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+              </svg>
+              Rich Text Editor
+            </div>
+            <h3 class="text-2xl sm:text-3xl font-bold mb-4">Write with power and simplicity</h3>
+            <p class="text-muted-foreground text-base leading-relaxed mb-6">
+              A TipTap-based editor designed for authors. Format text, insert images, create tables, add links — all with intuitive controls. No distractions, just pure writing.
+            </p>
+            <ul class="space-y-3">
+              <li class="flex items-start gap-3">
+                <svg class="w-5 h-5 text-primary flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span class="text-sm text-muted-foreground">Full formatting toolbar with headings, lists, and text styles</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <svg class="w-5 h-5 text-primary flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span class="text-sm text-muted-foreground">Insert images, create tables, and add hyperlinks</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <svg class="w-5 h-5 text-primary flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span class="text-sm text-muted-foreground">Word count and character tracking</span>
+              </li>
+            </ul>
+          </div>
+          <div class="order-1 lg:order-2 scale-in">
+            <div class="rounded-xl overflow-hidden shadow-2xl border border-border bg-card">
+              <img src="/editor.png" alt="Rich Text Editor" class="w-full" loading="lazy" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Feature 2: Focus Mode - Large Feature -->
+      <div class="mb-20 slide-in-right">
+        <div class="grid lg:grid-cols-2 gap-12 items-center">
+          <div class="scale-in">
+            <div class="rounded-xl overflow-hidden shadow-2xl border border-border bg-card">
+              <img src="/focusMode.png" alt="Focus Mode" class="w-full" loading="lazy" />
+            </div>
+          </div>
+          <div>
+            <div class="inline-flex items-center gap-2 px-3 py-1 mb-4 text-xs font-medium rounded-full bg-primary/10 text-primary border border-primary/20">
+              <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                <path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+              </svg>
+              Focus Mode
+            </div>
+            <h3 class="text-2xl sm:text-3xl font-bold mb-4">Eliminate distractions</h3>
+            <p class="text-muted-foreground text-base leading-relaxed mb-6">
+              Enter a clean, immersive writing environment. Focus mode removes everything but your words. Switch between light and dark themes to match your mood and environment.
+            </p>
+            <ul class="space-y-3">
+              <li class="flex items-start gap-3">
+                <svg class="w-5 h-5 text-primary flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span class="text-sm text-muted-foreground">Distraction-free writing with centered layout</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <svg class="w-5 h-5 text-primary flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span class="text-sm text-muted-foreground">Light and dark themes for day and night writing</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <svg class="w-5 h-5 text-primary flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span class="text-sm text-muted-foreground">Automatic saving while you write</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3-Column Feature Grid -->
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Feature: Chapter Management -->
+        <div class="fade-in">
+          <div class="w-12 h-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
             </svg>
           </div>
-          <h3 class="text-lg font-semibold mb-2">Rich Text Editor</h3>
-          <p class="text-muted-foreground text-sm leading-relaxed">
-            A powerful TipTap-based editor with full formatting, tables, images,
-            and distraction-free focus mode.
+          <h3 class="text-xl font-semibold mb-3">Book & Chapter Management</h3>
+          <p class="text-muted-foreground text-sm leading-relaxed mb-4">
+            Organize your manuscripts into books and chapters. Drag, drop, and rearrange with ease. Keep your story structured.
           </p>
         </div>
 
-        <!-- Feature 2: Book Organization -->
-        <div
-          class="p-6 rounded-xl bg-card border border-border hover:border-primary/30 transition-colors group"
-        >
-          <div
-            class="w-12 h-12 rounded-lg bg-primary/10 text-primary flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors"
-          >
-            <svg
-              class="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
-              ></path>
+        <!-- Feature: Cover Designer -->
+        <div class="fade-in">
+          <div class="w-12 h-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
             </svg>
           </div>
-          <h3 class="text-lg font-semibold mb-2">Book & Chapter Management</h3>
-          <p class="text-muted-foreground text-sm leading-relaxed">
-            Organize your manuscripts into books and chapters. Drag, drop, and
-            rearrange with ease.
+          <h3 class="text-xl font-semibold mb-3">Integrated Cover Designer</h3>
+          <p class="text-muted-foreground text-sm leading-relaxed mb-4">
+            Create stunning book covers with the built-in Fabric.js canvas editor. Add text, images, and shapes — no external tools needed.
           </p>
         </div>
 
-        <!-- Feature 3: Cover Designer -->
-        <div
-          class="p-6 rounded-xl bg-card border border-border hover:border-primary/30 transition-colors group"
-        >
-          <div
-            class="w-12 h-12 rounded-lg bg-primary/10 text-primary flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors"
-          >
-            <svg
-              class="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
-              ></path>
+        <!-- Feature: Export -->
+        <div class="fade-in">
+          <div class="w-12 h-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
             </svg>
           </div>
-          <h3 class="text-lg font-semibold mb-2">Integrated Cover Designer</h3>
-          <p class="text-muted-foreground text-sm leading-relaxed">
-            Create stunning book covers with the built-in Fabric.js canvas
-            editor. No external tools needed.
+          <h3 class="text-xl font-semibold mb-3">EPUB & PDF Export</h3>
+          <p class="text-muted-foreground text-sm leading-relaxed mb-4">
+            Publish-ready exports in EPUB and PDF formats. Your manuscript, your format, your choice. Share or publish anywhere.
           </p>
         </div>
 
-        <!-- Feature 4: Export -->
-        <div
-          class="p-6 rounded-xl bg-card border border-border hover:border-primary/30 transition-colors group"
-        >
-          <div
-            class="w-12 h-12 rounded-lg bg-primary/10 text-primary flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors"
-          >
-            <svg
-              class="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-              ></path>
+        <!-- Feature: Auto-save -->
+        <div class="fade-in">
+          <div class="w-12 h-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"></path>
             </svg>
           </div>
-          <h3 class="text-lg font-semibold mb-2">EPUB & PDF Export</h3>
-          <p class="text-muted-foreground text-sm leading-relaxed">
-            Publish-ready exports in EPUB and PDF formats. Your manuscript, your
-            format, your choice.
+          <h3 class="text-xl font-semibold mb-3">Automatic Saving</h3>
+          <p class="text-muted-foreground text-sm leading-relaxed mb-4">
+            Your work is saved automatically to a local SQLite database. Never lose a word again. All data stays on your device.
           </p>
         </div>
 
-        <!-- Feature 5: Auto-save -->
-        <div
-          class="p-6 rounded-xl bg-card border border-border hover:border-primary/30 transition-colors group"
-        >
-          <div
-            class="w-12 h-12 rounded-lg bg-primary/10 text-primary flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors"
-          >
-            <svg
-              class="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"
-              ></path>
+        <!-- Feature: Cross-platform -->
+        <div class="fade-in">
+          <div class="w-12 h-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
             </svg>
           </div>
-          <h3 class="text-lg font-semibold mb-2">Automatic Saving</h3>
-          <p class="text-muted-foreground text-sm leading-relaxed">
-            Your work is saved automatically to a local SQLite database. Never
-            lose a word again.
+          <h3 class="text-xl font-semibold mb-3">Cross-Platform Native</h3>
+          <p class="text-muted-foreground text-sm leading-relaxed mb-4">
+            Built with Tauri for native performance on Linux, Windows, and Android. Fast, efficient, and lightweight.
           </p>
         </div>
 
-        <!-- Feature 6: Cross-platform -->
-        <div
-          class="p-6 rounded-xl bg-card border border-border hover:border-primary/30 transition-colors group"
-        >
-          <div
-            class="w-12 h-12 rounded-lg bg-primary/10 text-primary flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors"
-          >
-            <svg
-              class="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-              ></path>
+        <!-- Feature: Open Source -->
+        <div class="fade-in">
+          <div class="w-12 h-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
             </svg>
           </div>
-          <h3 class="text-lg font-semibold mb-2">Cross-Platform</h3>
-          <p class="text-muted-foreground text-sm leading-relaxed">
-            Built with Tauri for native performance on Linux, Windows and
-            Android.
+          <h3 class="text-xl font-semibold mb-3">Free & Open Source</h3>
+          <p class="text-muted-foreground text-sm leading-relaxed mb-4">
+            MIT licensed and completely free. No subscriptions, no ads, no tracking. Your writing tool, your rules.
           </p>
         </div>
       </div>
