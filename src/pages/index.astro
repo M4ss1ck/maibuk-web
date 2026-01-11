@@ -1,6 +1,21 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import "../styles/global.css";
+
+// Fetch latest tag from GitHub
+const GITHUB_REPO = "M4ss1ck/maibuk";
+let version = "v0.1.14";
+try {
+  const res = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/tags`);
+  if (res.ok) {
+    const tags = await res.json();
+    if (tags.length > 0 && tags[0].name) {
+      version = tags[0].name;
+    }
+  }
+} catch {}
+
+const year = new Date().getFullYear();
 ---
 
 <Layout title="Maibuk — A Distraction-Free Writing App for Authors">
@@ -55,7 +70,7 @@ import "../styles/global.css";
         class="inline-flex items-center gap-2 px-3 py-1 mb-6 text-xs font-medium rounded-full bg-primary/10 text-primary border border-primary/20"
       >
         <span class="w-1.5 h-1.5 rounded-full bg-success animate-pulse"></span>
-        v0.1.13 — Now with EPUB & PDF Export
+        {version} — Now with EPUB & PDF Export
       </div>
 
       <h1
@@ -308,7 +323,7 @@ import "../styles/global.css";
     >
       <div class="flex items-center gap-2 text-muted-foreground">
         <img src="/icon.png" alt="Maibuk Logo" class="w-8 h-8 mb-1" />
-        <span class="text-sm">© 2026 Maibuk. MIT License.</span>
+        <span class="text-sm">© {year} Maibuk. MIT License.</span>
       </div>
 
       <div class="flex items-center gap-6">
