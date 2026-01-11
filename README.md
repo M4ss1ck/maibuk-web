@@ -1,43 +1,20 @@
-# Astro Starter Kit: Minimal
+# Maibuk Web
 
-```sh
-pnpm create astro@latest -- --template minimal
-```
+A minimalistic landing page for Maibuk, the cross-platform writing app for authors. Built with Astro and Tailwind CSS.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## 🚀 What is Maibuk?
 
-## 🚀 Project Structure
+Maibuk is a distraction-free, cross-platform writing app for authors. Organize your books, design covers, and export to EPUB & PDF — all in one elegant tool. The web version provides a beautiful, responsive landing page for the project.
 
-Inside of your Astro project, you'll see the following folders and files:
+## 🌈 Tech Stack
 
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+- **Frontend**: Astro + Tailwind CSS
+- **Responsive**: Mobile-first, minimalistic, author-focused
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## 📄 License
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
-
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `pnpm install`             | Installs dependencies                            |
-| `pnpm dev`             | Starts local dev server at `localhost:4321`      |
-| `pnpm build`           | Build your production site to `./dist/`          |
-| `pnpm preview`         | Preview your build locally, before deploying     |
-| `pnpm astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `pnpm astro -- --help` | Get help using the Astro CLI                     |
+This project is licensed under the MIT License. See [LICENSE](./LICENSE) for details.
 
 ## 👀 Want to learn more?
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+Feel free to check [Maibuk on GitHub](https://github.com/M4ss1ck/maibuk)
