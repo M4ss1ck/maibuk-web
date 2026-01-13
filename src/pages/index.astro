@@ -2,18 +2,6 @@
 import Layout from "../layouts/Layout.astro";
 import "../styles/global.css";
 
-const GITHUB_REPO = "M4ss1ck/maibuk";
-let version = "v0.1.14";
-try {
-  const res = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/tags`);
-  if (res.ok) {
-    const tags = await res.json();
-    if (tags.length > 0 && tags[0].name) {
-      version = tags[0].name;
-    }
-  }
-} catch {}
-
 const year = new Date().getFullYear();
 ---
 
@@ -76,6 +64,17 @@ const year = new Date().getFullYear();
       reveal('.slide-in-left');
       reveal('.slide-in-right');
       reveal('.scale-in');
+
+      // Fetch latest version from GitHub
+      fetch('https://api.github.com/repos/M4ss1ck/maibuk/tags')
+        .then(res => res.json())
+        .then(tags => {
+          if (tags.length > 0 && tags[0].name) {
+            const versionEl = document.getElementById('version');
+            if (versionEl) versionEl.textContent = tags[0].name;
+          }
+        })
+        .catch(() => {});
     });
   }
 </script>
@@ -132,7 +131,7 @@ const year = new Date().getFullYear();
         class="inline-flex items-center gap-2 px-3 py-1 mb-6 text-xs font-medium rounded-full bg-primary/10 text-primary border border-primary/20 scale-in"
       >
         <span class="w-1.5 h-1.5 rounded-full bg-success animate-pulse"></span>
-        {version} — Now with EPUB & PDF Export
+        <span id="version">v0.1.17</span> — Now with EPUB & PDF Export
       </div>
 
       <h1
