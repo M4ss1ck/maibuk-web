@@ -107,6 +107,11 @@ const year = new Date().getFullYear();
           >Features</a
         >
         <a
+          href="/sync"
+          class="text-sm text-muted-foreground hover:text-foreground transition-colors hidden sm:block"
+          >Sync</a
+        >
+        <a
           href="https://github.com/M4ss1ck/maibuk"
           target="_blank"
           rel="noopener noreferrer"
@@ -142,7 +147,7 @@ const year = new Date().getFullYear();
         class="inline-flex items-center gap-2 px-3 py-1 mb-6 text-xs font-medium rounded-full bg-primary/10 text-primary border border-primary/20 scale-in"
       >
         <span class="w-1.5 h-1.5 rounded-full bg-success animate-pulse"></span>
-        <span id="version">v0.1.17</span> — Now with EPUB & PDF Export
+        <span id="version">v0.1.17</span> -> Now with Self‑Hosted Sync
       </div>
 
       <h1
@@ -437,6 +442,120 @@ const year = new Date().getFullYear();
                 >
               </li>
             </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Feature 3: Encrypted Sync - Large Feature -->
+      <div class="mb-20 slide-in-left">
+        <div class="grid lg:grid-cols-2 gap-12 items-center">
+          <div class="order-2 lg:order-1">
+            <div
+              class="inline-flex items-center gap-2 px-3 py-1 mb-4 text-xs font-medium rounded-full bg-primary/10 text-primary border border-primary/20"
+            >
+              <svg
+                class="w-3 h-3"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3-3m0 0l3 3m-3-3v12"
+                ></path>
+              </svg>
+              Encrypted Sync
+            </div>
+            <h3 class="text-2xl sm:text-3xl font-bold mb-4">
+              Sync across devices, privately
+            </h3>
+            <p class="text-muted-foreground text-base leading-relaxed mb-6">
+              Keep your books in sync across all your devices. All data is
+              end-to-end encrypted with AES-GCM-256 before leaving your device —
+              the server never sees your plaintext content.
+            </p>
+            <ul class="space-y-3">
+              <li class="flex items-start gap-3">
+                <svg
+                  class="w-5 h-5 text-primary shrink-0 mt-0.5"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span class="text-sm text-muted-foreground"
+                  >End-to-end encrypted — your data stays private</span
+                >
+              </li>
+              <li class="flex items-start gap-3">
+                <svg
+                  class="w-5 h-5 text-primary shrink-0 mt-0.5"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span class="text-sm text-muted-foreground"
+                  >Use the official server or self-host with Docker</span
+                >
+              </li>
+              <li class="flex items-start gap-3">
+                <svg
+                  class="w-5 h-5 text-primary shrink-0 mt-0.5"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span class="text-sm text-muted-foreground"
+                  >Open-source sync server — fully auditable</span
+                >
+              </li>
+            </ul>
+            <div class="mt-6">
+              <a
+                href="/sync"
+                class="inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline"
+              >
+                Learn how to set up sync
+                <svg
+                  class="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M9 5l7 7-7 7"></path>
+                </svg>
+              </a>
+            </div>
+          </div>
+          <div class="order-1 lg:order-2 scale-in">
+            <div
+              class="rounded-xl overflow-hidden shadow-2xl border border-border bg-card"
+            >
+              <img src="/sync.png" alt="Sync" class="w-full" loading="lazy" />
+            </div>
           </div>
         </div>
       </div>
